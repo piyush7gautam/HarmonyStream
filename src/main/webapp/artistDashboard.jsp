@@ -1,0 +1,87 @@
+<%@ include file="/WEB-INF/includes/header.jsp" %>
+<%@ page import="com.musicstreaming.dao.MusicDAO"%>
+<%@ page import="com.musicstreaming.dao.MessageDAO"%>
+<%@ page import="com.musicstreaming.model.MusicTrack"%>
+<%@ page import="com.musicstreaming.model.Message"%>
+<%@ page import="com.musicstreaming.model.User"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<div class="container my-4">
+<!-- ORIGINAL CONTENT START (trimmed) -->
+<div class="card p-3">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Artist Dashboard</title>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<jsp:include page="header.jsp"/>
+<div class="container">
+    <h1>Artist Dashboard</h1>
+    <%
+        User me = (User) session.getAttribute("currentUser");
+    %>
+    <h2>Upload Music</h2>
+    <form action="artist/music" method="post" class="card-inline">
+        <input type="hidden" name="action" value="upload"/>
+        <input type="text" name="title" placeholder="Title" required/>
+        <input type="text" name="album" placeholder="Album" required/>
+        <input type="text" name="genre" placeholder="Genre" required/>
+        <button type="submit">Upload</button>
+    </form>
+    <p>New uploads require admin approval before they appear to listeners.</p>
+
+    <h2>Your Music & Performance</h2>
+    <table>
+        <tr><th>ID</th><th>Title</th><th>Album</th><th>Genre</th><th>Approved</th><th>Streams</th><th>Likes</th></tr>
+        <%
+            for (MusicTrack t : MusicDAO.findByArtistName(me.getName())) {
+        %>
+        <tr>
+            <td><%= t.getId() %></td>
+            <td><%= t.getTitle() %></td>
+            <td><%= t.getAlbum() %></td>
+            <td><%= t.getGenre() %></td>
+            <td><%= t.isApproved() ? "Yes" : "No" %></td>
+            <td><%= t.getStreams() %></td>
+            <td><%= t.getLikes() %></td>
+        </tr>
+        <% } %>
+    </table>
+
+    <h2>Fan Interaction</h2>
+    <table>
+        <tr><th>From</th><th>Message</th></tr>
+        <%
+            for (Message m : MessageDAO.getMessagesForArtist(me.getEmail())) {
+        %>
+        <tr>
+            <td><%= m.getFromEmail() %></td>
+            <td><%= m.getContent() %></td>
+        </tr>
+        <% } %>
+    </table>
+
+    <h3>Reply to Fan</h3>
+    <form action="artist/music" method="post" class="card-inline">
+        <input type="hidden" name="action" value="reply"/>
+        <input type="email" name="toEmail" placeholder="Fan email" required/>
+        <input type="text" name="content" placeholder="Reply message" required/>
+        <button type="submit">Send Reply</button>
+    </form>
+
+    <h2>Upload History</h2>
+    <p>Your uploads are shown in the table above. You can extend this UI with more details like upload date.</p>
+
+    <h2>Fan Engagement</h2>
+    <p>This simplified demo uses streams and likes as engagement metrics. You can add charts using JavaScript if needed.</p>
+</div>
+</body>
+</html>
+
+<%@ include file="/WEB-INF/includes/footer.jsp" %>
+</div>
+<!-- ORIGINAL CONTENT END -->
+</div>
+

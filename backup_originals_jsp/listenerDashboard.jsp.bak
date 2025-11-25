@@ -1,0 +1,106 @@
+<%@ include file="/WEB-INF/includes/header.jsp" %>
+<%@ page import="com.musicstreaming.dao.MusicDAO"%>
+<%@ page import="com.musicstreaming.dao.PlaylistDAO"%>
+<%@ page import="com.musicstreaming.model.MusicTrack"%>
+<%@ page import="com.musicstreaming.model.Playlist"%>
+<%@ page import="com.musicstreaming.model.User"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listener Dashboard</title>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<jsp:include page="header.jsp"/>
+<div class="container">
+    <h1>Listener Dashboard</h1>
+    <%
+        User me = (User) session.getAttribute("currentUser");
+    %>
+
+    <h2>Music Streaming (Approved & Recommended)</h2>
+    <table>
+        <tr><th>ID</th><th>Title</th><th>Artist</th><th>Album</th><th>Genre</th></tr>
+        <%
+            for (MusicTrack t : MusicDAO.getApprovedTracks()) {
+        %>
+        <tr>
+            <td><%= t.getId() %></td>
+            <td><%= t.getTitle() %></td>
+            <td><%= t.getArtistName() %></td>
+            <td><%= t.getAlbum() %></td>
+            <td><%= t.getGenre() %></td>
+        </tr>
+        <% } %>
+    </table>
+    <p>Select track IDs from this list when adding to playlists.</p>
+
+    <h2>Create Playlist</h2>
+    <form action="listener/playlists" method="post" class="card-inline">
+        <input type="hidden" name="action" value="create"/>
+        <input type="text" name="title" placeholder="Playlist title" required/>
+        <button type="submit">Create Playlist</button>
+    </form>
+
+    <h2>Your Playlists</h2>
+    <table>
+        <tr><th>ID</th><th>Title</th><th>Tracks</th></tr>
+        <%
+            for (Playlist p : PlaylistDAO.getPlaylistsByOwner(me.getEmail())) {
+        %>
+        <tr>
+            <td><%= p.getId() %></td>
+            <td><%= p.getTitle() %></td>
+            <td>
+                <%
+                    for (MusicTrack t : p.getTracks()) {
+                %>
+                    <div><%= t.getTitle() %> - <%= t.getArtistName() %></div>
+                <%
+                    }
+                %>
+            </td>
+        </tr>
+        <% } %>
+    </table>
+
+    <h3>Add Track to Playlist</h3>
+    <form action="listener/playlists" method="post" class="card-inline">
+        <input type="hidden" name="action" value="addTrack"/>
+        <input type="number" name="playlistId" placeholder="Playlist ID" required/>
+        <input type="number" name="trackId" placeholder="Track ID" required/>
+        <button type="submit">Add</button>
+    </form>
+
+    <h2>Follow Artists</h2>
+    <form action="listener/follow" method="post" class="card-inline">
+        <input type="text" name="artistName" placeholder="Artist name" required/>
+        <button type="submit">Follow</button>
+    </form>
+    <%
+        String key = "followedArtists_" + me.getEmail();
+        java.util.Set<String> followed = (java.util.Set<String>) session.getAttribute(key);
+        if (followed != null) {
+    %>
+    <h3>Followed Artists</h3>
+    <ul>
+        <%
+            for (String a : followed) {
+        %>
+        <li><%= a %></li>
+        <% } %>
+    </ul>
+    <% } %>
+
+    <h2>Profile Management</h2>
+    <p>For simplicity, profile editing is not fully implemented.
+       You can extend this section with a servlet that updates the UserDAO.</p>
+
+    <h2>Listening History</h2>
+    <p>To implement listening history, you can track played tracks in a separate structure (e.g., HistoryDAO).</p>
+</div>
+</body>
+</html>
+
+<%@ include file="/WEB-INF/includes/footer.jsp" %>

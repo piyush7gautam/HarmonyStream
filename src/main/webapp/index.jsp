@@ -1,0 +1,45 @@
+<%@ include file="/WEB-INF/includes/header.jsp" %>
+
+<div class="container my-4">
+<div class="card p-3">
+
+<div class="banner mb-4">
+  <div class="row">
+    <div class="col-md-8">
+      <h1>Welcome to HarmonyStream</h1>
+      <p>Your personalized music experience — choose a theme from the top-right.</p>
+    </div>
+    <div class="col-md-4">
+      <div class="panel p-3">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="login.jsp">Login</a></li>
+          <li><a href="register.jsp">Register</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3>Featured Tracks</h3>
+<div class="row mb-4">
+  <div class="col-md-3">
+    <div class="card p-3 mb-3">
+      <h6>Song A</h6>
+      <p class="small">Artist X</p>
+      <button class="btn btn-sm btn-primary">Play</button>
+    </div>
+  </div>
+</div>
+
+<h3>Browse (Slider preview)</h3>
+<div class="slider mb-4" style="white-space:nowrap; overflow-x:auto; padding:10px 0;">
+  <div class="thumb"><img src="https://via.placeholder.com/160x90?text=1" /></div>
+  <div class="thumb"><img src="https://via.placeholder.com/160x90?text=2" /></div>
+  <div class="thumb"><img src="https://via.placeholder.com/160x90?text=3" /></div>
+</div>
+
+<%@ include file="/WEB-INF/includes/footer.jsp" %>
+
+</div>
+</div>

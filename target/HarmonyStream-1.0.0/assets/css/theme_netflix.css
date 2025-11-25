@@ -1,0 +1,6 @@
+/* Theme: Netflix-style Black UI */
+body { background:#060606; color:#ffffff; }
+.navbar { background:#111; }
+.banner { height: 320px; background-image: linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2)); color:#fff; display:flex; align-items:center; padding: 40px; }
+.slider .thumb { width:160px; margin-right:12px; display:inline-block; vertical-align:top; }
+.card { background: transparent; color: #ddd; }

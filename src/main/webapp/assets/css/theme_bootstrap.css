@@ -1,0 +1,6 @@
+/* Theme: Bootstrap 5 Dark (Spotify-like) */
+body { background:#0f1720; color:#e6eef6; }
+.navbar { background: linear-gradient(90deg,#0b1220,#172431); }
+.card { background: rgba(255,255,255,0.03); border: none; border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.5); }
+.footer { color: #9aa8b3; padding: 20px 0; text-align:center; }
+.banner { background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); padding: 40px; border-radius: 12px; }

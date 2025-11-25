@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+    <display-name>HarmonyStream - Online Music Streaming Platform</display-name>
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.musicstreaming.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DashboardServlet</servlet-name>
+        <servlet-class>com.musicstreaming.servlet.DashboardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminUserServlet</servlet-name>
+        <servlet-class>com.musicstreaming.servlet.AdminUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminUserServlet</servlet-name>
+        <url-pattern>/admin/users</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminContentServlet</servlet-name>
+        <servlet-class>com.musicstreaming.servlet.AdminContentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminContentServlet</servlet-name>
+        <url-pattern>/admin/content</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ArtistMusicServlet</servlet-name>
+        <servlet-class>com.musicstreaming.servlet.ArtistMusicServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ArtistMusicServlet</servlet-name>
+        <url-pattern>/artist/music</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListenerPlaylistServlet</servlet-name>
+        <servlet-class>com.musicstreaming.servlet.ListenerPlaylistServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListenerPlaylistServlet</servlet-name>
+        <url-pattern>/listener/playlists</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FollowArtistServlet</servlet-name>
+        <servlet-class>com.musicstreaming.servlet.FollowArtistServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FollowArtistServlet</servlet-name>
+        <url-pattern>/listener/follow</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.musicstreaming.servlet.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+  <servlet>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>com.musicstreaming.servlet.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
+
+</web-app>

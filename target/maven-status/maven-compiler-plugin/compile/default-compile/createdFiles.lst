@@ -1,0 +1,17 @@
+com\musicstreaming\servlet\AdminContentServlet.class
+com\musicstreaming\dao\MusicDAO.class
+com\musicstreaming\servlet\FollowArtistServlet.class
+com\musicstreaming\model\User.class
+com\musicstreaming\model\Playlist.class
+com\musicstreaming\servlet\DashboardServlet.class
+com\musicstreaming\model\Message.class
+com\musicstreaming\servlet\AdminUserServlet.class
+com\musicstreaming\dao\UserDAO.class
+com\musicstreaming\dao\DBConfig.class
+com\musicstreaming\servlet\ArtistMusicServlet.class
+com\musicstreaming\servlet\LogoutServlet.class
+com\musicstreaming\dao\MessageDAO.class
+com\musicstreaming\servlet\ListenerPlaylistServlet.class
+com\musicstreaming\servlet\LoginServlet.class
+com\musicstreaming\dao\PlaylistDAO.class
+com\musicstreaming\model\MusicTrack.class

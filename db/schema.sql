@@ -1,0 +1,35 @@
+-- Sample schema for HarmonyStream
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  email VARCHAR(150),
+  role VARCHAR(20) DEFAULT 'listener',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS music_tracks (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  artist VARCHAR(255),
+  album VARCHAR(255),
+  genre VARCHAR(100),
+  url VARCHAR(500),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS playlists (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  name VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE IF NOT EXISTS playlist_tracks (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  playlist_id INT,
+  track_id INT,
+  FOREIGN KEY (playlist_id) REFERENCES playlists(id),
+  FOREIGN KEY (track_id) REFERENCES music_tracks(id)
+);
